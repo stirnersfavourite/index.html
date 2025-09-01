@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12Axes Political Test Results</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .chart-container {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+        .analysis {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+        .axis-results {
+            width: 100%;
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+        .axis-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #3498db;
+        }
+        .axis-name {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        .axis-value {
+            height: 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+        .axis-value-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-size: 0.8rem;
+        }
+        .axis-desc {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        h3 {
+            color: #2c3e50;
+            margin: 15px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #34495e;
+        }
+        .summary {
+            background: #e8f4fc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>12Axes Political Test Results</h1>
+            <p class="subtitle">Analysis of your political compass</p>
+        </header>
+        
+        <div class="content">
+            <div class="chart-container">
+                <h2>Your Political Profile</h2>
+                <canvas id="radarChart"></canvas>
+            </div>
+            
+            <div class="analysis">
+                <h2>Analysis</h2>
+                <p>Based on your test scores, you appear to have a strong preference for:</p>
+                <ul>
+                    <li>Individual freedom over state control</li>
+                    <li>Diplomatic approaches over military solutions</li>
+                    <li>Decentralization and local governance</li>
+                    <li>Progressive values over traditional ones</li>
+                    <li>Secularism over religious influence in government</li>
+                    <li>Free trade over protectionism</li>
+                </ul>
+                
+                <div class="summary">
+                    <h3>Overall Interpretation</h3>
+                    <p>Your results suggest you lean toward libertarianism with progressive values. You likely support civil liberties, free markets, peace-oriented foreign policy, and social progress. You appear to be skeptical of state power, military intervention, and traditional authority structures.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="axis-results">
+            <div class="axis-card">
+                <div class="axis-name">State vs. Community</div>
+                <div class="axis-value">
+                    <div class="axis-value-fill" style="width: 50%;">50%</div>
+                </div>
+                <div class="axis-desc">Balanced between state and community</div>
+            </div>
+            
+            <div class="axis-card">
+                <div class="axis-name">Freedom vs. Authority</div>
+                <div class="axis-value">
+                    <div class="axis-value-fill" style="width: 100%;">100%</div>
+                </div>
+                <div class="axis-desc">Strong preference for freedom</div>
+            </div>
+            
+            <div class="axis-card">
+                <div class="axis-name">Military vs. Diplomacy</div>
+                <div class="axis-value">
+                    <div class="axis-value-fill" style="width: 100%;">100%</div>
+                </div>
+                <div class="axis-desc">Strong preference for diplomacy</div>
+            </div>
+            
+            <div class="axis-card">
+                <div class="axis-name">Security vs. Freedom</div>
+                <div class="axis-value">
+                    <div class="axis-value-fill" style="width: 0%;">0%</div>
+                </div>
+                <div class="axis-desc">Strong preference for security</div>
+            </div>
+            
+            <div class="axis-card">
+                <div class="axis-name">Equality vs. Markets</div>
+                <div class="axis-value">
+                    <div class="axis-value-fill" style="width: 0%;">0%</div>
+                </div>
+                <div class="axis-desc">Strong preference for markets</div>
+            </div>
+            
+            <div class="axis-card">
+                <div class="axis-name">Central vs. Local</div>
+                <div class="axis-value">
+                    <div class="axis-value-fill" style="width: 100%;">100%</div>
+                </div>
+                <div class="axis-desc">Strong preference for local governance</div>
+            </div>
+            
+            <div class="axis-card">
+                <div class="axis-name">Tradition vs. Progress</div>
+                <div class="axis-value">
+                    <div class="axis-value-fill" style="width: 100%;">100%</div>
+                </div>
+                <div class="axis-desc">Strong preference for progress</div>
+            </div>
+            
+            <div class="axis-card">
+                <div class="axis-name">Religion vs. Secular</div>
+                <div class="axis-value">
+                    <div class="axis-value-fill" style="width: 100%;">100%</div>
+                </div>
+                <div class="axis-desc">Strong preference for secularism</div>
+            </div>
+            
+            <div class="axis-card">
+                <div class="axis-name">International vs. National</div>
+                <div class="axis-value">
+                    <div class="axis-value-fill" style="width: 0%;">0%</div>
+                </div>
+                <div class="axis-desc">Strong preference for nationalism</div>
+            </div>
+            
+            <div class="axis-card">
+                <div class="axis-name">Freedom vs. Equality</div>
+                <div class="axis-value">
+                    <div class="axis-value-fill" style="width: 100%;">100%</div>
+                </div>
+                <div class="axis-desc">Strong preference for freedom</div>
+            </div>
+            
+            <div class="axis-card">
+                <div class="axis-name">Presidential vs. Parliamentary</div>
+                <div class="axis-value">
+                    <div class="axis-value-fill" style="width: 0%;">0%</div>
+                </div>
+                <div class="axis-desc">Strong preference for parliamentary</div>
+            </div>
+            
+            <div class="axis-card">
+                <div class="axis-name">Protection vs. Free Trade</div>
+                <div class="axis-value">
+                    <div class="axis-value-fill" style="width: 100%;">100%</div>
+                </div>
+                <div class="axis-desc">Strong preference for free trade</div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>12Axes Political Test Analysis | Based on results from politicaltests.github.io</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            
+            // Data from the URL parameters
+            const data = {
+                labels: [
+                    'State vs Community', 
+                    'Freedom vs Authority', 
+                    'Military vs Diplomacy',
+                    'Security vs Freedom',
+                    'Equality vs Markets',
+                    'Central vs Local',
+                    'Tradition vs Progress',
+                    'Religion vs Secular',
+                    'International vs National',
+                    'Freedom vs Equality',
+                    'Presidential vs Parliamentary',
+                    'Protection vs Free Trade'
+                ],
+                datasets: [{
+                    label: 'Your Results',
+                    data: [50, 100, 100, 0, 0, 100, 100, 100, 0, 100, 0, 100],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(54, 162, 235, 1)'
+                }]
+            };
+            
+            const config = {
+                type: 'radar',
+                data: data,
+                options: {
+                    elements: {
+                        line: {
+                            borderWidth: 3
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: {
+                                stepSize: 20
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: '12Axes Political Compass'
+                        }
+                    }
+                }
+            };
+            
+            new Chart(ctx, config);
+        });
+    </script>
+</body>
+</html>
